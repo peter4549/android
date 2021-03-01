@@ -8,6 +8,7 @@ MVC 패턴은 Model + View + Controller를 합친 용어입니다. MVC 패턴의
 <p align="center">
   <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7IE8f%2FbtqBRvw9sFF%2FAGLRdsOLuvNZ9okmGOlkx1%2Fimg.png" width="400" height="299" alt="Sublime's custom image" />
 </p>
+
 * Model: 어플리케이션에서 사용되는 데이터와 그 데이터를 처리하는 부분입니다.
 * View: 사용자에서 보여지는 UI 부분입니다.
 * Controller: 사용자의 입력(Action)을 받고 처리하는 부분입니다.
