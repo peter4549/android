@@ -20,6 +20,6 @@ MVC 패턴의 동작 순서는 아래와 같습니다.
 4. View는 Model을 이용하여 화면을 나타냅니다.
 
 * 참고 - MVC에서 View가 업데이트 되는 방법
-* * View가 Model을 이용하여 직접 업데이트 하는 방법
-* * Model에서 View에게 Notify하여 업데이트 하는 방법
-* * View가 Polling으로 주기적으로 Model의 변경을 감지하여 업데이트 하는 방법.
+  * View가 Model을 이용하여 직접 업데이트 하는 방법
+ * Model에서 View에게 Notify하여 업데이트 하는 방법
+ * View가 Polling으로 주기적으로 Model의 변경을 감지하여 업데이트 하는 방법.
