@@ -39,6 +39,37 @@ MVC 패턴의 단점은 View와 Model 사이의 의존성이 높다는 것입니
 MVP 패턴은 Model + View + Presenter를 합친 용어입니다. Model과 View는 MVC 패턴과 동일하고, Controller 대신 Presenter가 존재합니다.
 
 ### 1) 구조
-<p>
+<p align="center">
   <img src="https://blog.kakaocdn.net/dn/clZlsT/btqBTLzeUCL/IDA8Ga6Yarndgr88g9Nkhk/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FclZlsT%2FbtqBTLzeUCL%2FIDA8Ga6Yarndgr88g9Nkhk%2Fimg.png" width="400" height="297" alt="MVP" filename="mvp.png" filemime="image/jpeg" style="width: 400px; height: 297px;" original="yes">
+</p>  
+* Model: 어플리케이션에서 사용되는 데이터와 그 데이터를 처리하는 부분입니다.
+* View : 사용자에서 보여지는 UI 부분입니다.
+* Presenter : View에서 요청한 정보로 Model을 가공하여 View에 전달해 주는 부분입니다. View와 Model을 붙여주는 역할을 합니다.
+
+### 2) 동작
+MVP 패턴의 동작 순서는 아래와 같습니다.
+
+1. 사용자의 Action들은 View를 통해 들어오게 됩니다.
+2. View는 데이터를 Presenter에 요청합니다.
+3. Presenter는 Model에게 데이터를 요청합니다.
+4. Model은 Presenter에서 요청받은 데이터를 응답합니다.
+5. Presenter는 View에게 데이터를 응답합니다.
+6. View는 Presenter가 응답한 데이터를 이용하여 화면을 나타냅니다.
+
+### 3) 특징
+Presenter는 View와 Model의 인스턴스를 가지고 있어 둘을 연결하는 접착제 역할을 합니다.
+Presenter와 View는 1:1 관계입니다.
+
+### 4) 장점
+MVP 패턴의 장점은 View와 Model의 의존성이 없다는 것입니다. MVP 패턴은 MVC 패턴의 단점이었던 View와 Model의 의존성을 해결하였습니다. (Presenter를 통해서만 데이터를 전달 받기 때문에..)
+
+### 5) 단점
+MVC 패턴의 단점인 View와 Model 사이의 의존성은 해결되었지만, View와 Presenter 사이의 의존성이 높은 가지게 되는 단점이 있습니다. 어플리케이션이 복잡해 질 수록 View와 Presenter 사이의 의존성이 강해지는 단점이 있습니다.
+
+3. MVVM
+MVVM 패턴은 Model + View + View Model를 합친 용어입니다. Model과 View은 다른 패턴과 동일합니다. MVVM 패턴의 구조, 동작, 특징, 장점, 단점을 이야기하겠습니다.
+
+1) 구조
+<p align="center">
+  <img src="https://blog.kakaocdn.net/dn/CiXz0/btqBQ1iMiVT/staXr7UO95opKgXEU01EY0/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCiXz0%2FbtqBQ1iMiVT%2FstaXr7UO95opKgXEU01EY0%2Fimg.png" width="400" height="297" alt="MVVM" filename="mvvm.png" filemime="image/jpeg" style="width: 400px; height: 297px;" original="yes">
 </p>
