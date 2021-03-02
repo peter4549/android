@@ -52,7 +52,7 @@ class MainActivity extends LifecycleActivity {
 ## 4. Room
 > ORM은 Cursor 단위로 통신하는 쿼리를 객체 단위로 통신할 수 있도록 돕습니다. [(ORM 참고링크)](https://d2.naver.com/helloworld/472196) Room은 이러한 ORM 라이브러리 중 하나로, Annotation 기반입니다. Room이 어떻게 SQLite를 더 사용하기 편하게 하는지 살펴보겠습니다.
 
-1. Annotation 기반의 정의와 자동 매칭
+### 1. Annotation 기반의 정의와 자동 매칭
 ```
 // Database 정의. 테이블 및 버전을 함께 적는다.
 // RoomDatabase를 상속받는다.
@@ -90,7 +90,7 @@ interface UserDao {
 }
 ```
 
-2. 컴파일 타임 쿼리 검증
+### 2. 컴파일 타임 쿼리 검증
 > Room은 또한 원래 런타임으로 테스트 해야만 제대로 동작하는지 알 수 있는 쿼리를 컴파일 타임에 검증하여, 정확한 쿼리를 빨리 짤 수 있도록 돕습니다.
 
 # [Android Architecture Components 소개 (3) (완)](https://medium.com/@maryangmin/android-architecture-components-%EC%86%8C%EA%B0%9C-3-52980a9e22af)
