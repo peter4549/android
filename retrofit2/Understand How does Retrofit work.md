@@ -57,3 +57,15 @@ The first check it does is whether the interface provided is a **valid** interfa
     }
   }
 ```
+The Second Step is like a chain of methods starting from eagerlyValidateMethods method call.
+```
+ private void eagerlyValidateMethods(Class<?> service) {
+    Platform platform = Platform.get();
+    for (Method method : service.getDeclaredMethods()) {
+      if (!platform.isDefaultMethod(method) && !Modifier.isStatic(method.getModifiers())) {
+        loadServiceMethod(method);
+      }
+    }
+  }
+```
+In the above method **Platform.get()** has the following implementation to return the **platform type**. You can check full code in your IDE if you want to know more details
