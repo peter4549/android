@@ -8,3 +8,13 @@
 <p align="center">
   <img alt="Image for post" class="vo wr t u v if aj c" width="419" height="150" src="https://miro.medium.com/max/419/1*NKRcmHa4XDeFyELAZ8U7GQ.png" srcset="https://miro.medium.com/max/276/1*NKRcmHa4XDeFyELAZ8U7GQ.png 276w, https://miro.medium.com/max/419/1*NKRcmHa4XDeFyELAZ8U7GQ.png 419w" sizes="419px">
 </p>
+> Main의 `onStop()`은 예상과는 달리 Detail의 라이프사이클관련 작업이 끝나고나서 호출되게 됩니다.
+
+
+## 질문2
+> Detail Activity 종료후 다시 Main Activity가 보여질때
+라이프사이클이 호출되는 순서를 나열해보세요
+
+<p align="center">
+  <img alt="Image for post" class="vo wr t u v if aj c" width="429" height="163" src="https://miro.medium.com/max/429/1*rJesnrBaFknoCqc-7rSP0Q.png" srcset="https://miro.medium.com/max/276/1*rJesnrBaFknoCqc-7rSP0Q.png 276w, https://miro.medium.com/max/429/1*rJesnrBaFknoCqc-7rSP0Q.png 429w" sizes="429px">
+</p>
