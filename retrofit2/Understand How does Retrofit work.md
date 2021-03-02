@@ -281,4 +281,5 @@ Builder(Retrofit retrofit, Method method) {
 <p align="center">
 <img alt="Image for post" class="vf ws t u v hr aj c" width="2143" height="712" src="https://miro.medium.com/max/2143/1*4icKveo2LcB84EgBOpD3-g.png" srcset="https://miro.medium.com/max/276/1*4icKveo2LcB84EgBOpD3-g.png 276w, https://miro.medium.com/max/552/1*4icKveo2LcB84EgBOpD3-g.png 552w, https://miro.medium.com/max/640/1*4icKveo2LcB84EgBOpD3-g.png 640w, https://miro.medium.com/max/700/1*4icKveo2LcB84EgBOpD3-g.png 700w" sizes="700px">
 </p>  
+
 Finally, we reach **java.lang.reflect** package to fetch **annotations** from **AccessibleObject** class, **getGenericParameterTypes()** and **getParameterAnnotations()** from **Method** class.
