@@ -2,7 +2,7 @@
 > 각각의 역할을 나눠 코드 관리를 하자!
 
 ## 1. MVC
-MVC 패턴은 Model + View + Controller를 합친 용어입니다. MVC 패턴의 구조, 동작, 특징, 장점, 단점을 이야기하겠습니다.
+MVC 패턴은 Model + View + Controller를 합친 용어입니다.
 
 ### 1) 구조
 <p align="center">
@@ -34,3 +34,11 @@ MVC 패턴의 장점은 널리 사용되고 있는 패턴이라는 점에 걸맞
 
 ### 5) 단점
 MVC 패턴의 단점은 View와 Model 사이의 의존성이 높다는 것입니다. View와 Model의 높은 의존성은 어플리케이션이 커질수록 복잡하지고 유지보수가 어렵게 만들 수 있습니다.
+
+## 2. MVP
+MVP 패턴은 Model + View + Presenter를 합친 용어입니다. Model과 View는 MVC 패턴과 동일하고, Controller 대신 Presenter가 존재합니다.
+
+### 1) 구조
+<p>
+  <img src="https://blog.kakaocdn.net/dn/clZlsT/btqBTLzeUCL/IDA8Ga6Yarndgr88g9Nkhk/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FclZlsT%2FbtqBTLzeUCL%2FIDA8Ga6Yarndgr88g9Nkhk%2Fimg.png" width="400" height="297" alt="MVP" filename="mvp.png" filemime="image/jpeg" style="width: 400px; height: 297px;" original="yes">
+</p>
