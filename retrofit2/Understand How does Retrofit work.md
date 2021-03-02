@@ -285,3 +285,5 @@ Builder(Retrofit retrofit, Method method) {
 Finally, we reach **java.lang.reflect** package to fetch **annotations** from **AccessibleObject** class, **getGenericParameterTypes()** and **getParameterAnnotations()** from **Method** class.
 
 ## Reflections
+Retrofit makes use of reflections to get the work done. In object-oriented programming languages such as Java, reflection provides developers the flexibility to **inspect** the **classes**, **interfaces**, **fields** and **methods** at **runtime** without knowing the names of the interfaces, fields, methods at **compile** time. Within the **security** limits imposed by Java (use of public, protected, private), you can then construct objects, access fields, and invoke methods dynamically. The Java **Reflection** APIs are available from the package **java.lang.reflect**, which is included within the **Android SDK** for developers to use. **Proxy** and **InvocationHandler** are the classes from **java.lang.reflect** package.
+### [Reflection in Java](https://www.geeksforgeeks.org/reflection-in-java/)
