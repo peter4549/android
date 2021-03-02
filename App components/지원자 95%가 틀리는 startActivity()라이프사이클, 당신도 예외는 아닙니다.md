@@ -8,6 +8,7 @@
 <p align="center">
   <img alt="Image for post" class="vo wr t u v if aj c" width="419" height="150" src="https://miro.medium.com/max/419/1*NKRcmHa4XDeFyELAZ8U7GQ.png" srcset="https://miro.medium.com/max/276/1*NKRcmHa4XDeFyELAZ8U7GQ.png 276w, https://miro.medium.com/max/419/1*NKRcmHa4XDeFyELAZ8U7GQ.png 419w" sizes="419px">
 </p>
+
 > Main의 `onStop()`은 예상과는 달리 Detail의 라이프사이클관련 작업이 끝나고나서 호출되게 됩니다.
 
 
