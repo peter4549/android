@@ -2,7 +2,7 @@
 # [Android Architecture Components 소개 (2)](https://medium.com/@maryangmin/android-architecture-components-%EC%86%8C%EA%B0%9C-2-d41a9272e692)
 
 ## 3.ViewModel
-> MVVM에서 뷰모델은 뷰와 Repository를 이어주고 데이터를 보관하는 역할을 합니다. 하지만 싱글톤 등의 별도 처리를 하지 않는다면 뷰모델은 뷰 인스턴스 변수로 종속됩니다. 뷰에 종속되면 유지되어야 하는 작업 또는 데이터가 화면회전 등의 생명주기에 따라 소실될 수 있습니다.
+MVVM에서 뷰모델은 뷰와 Repository를 이어주고 데이터를 보관하는 역할을 합니다. 하지만 싱글톤 등의 별도 처리를 하지 않는다면 뷰모델은 뷰 인스턴스 변수로 종속됩니다. 뷰에 종속되면 유지되어야 하는 작업 또는 데이터가 화면회전 등의 생명주기에 따라 소실될 수 있습니다.
 
 ```
 class MainActivity extends LifecycleActivity {
@@ -19,7 +19,7 @@ class MainActivity extends LifecycleActivity {
 }
 ```
 
-> AAC의 뷰모델은 데이터를 쉽게 생명주기와 분리하여 관리할 수 있도록 돕습니다. AAC의 ViewModel을 상속받은 뷰모델은 ViewModelProviders로 Scope를 관리할 수 있습니다. 해당 Scope 내에서는 하나의 인스턴스만을 유지하여 작업이 중복되거나 데이터가 소실되지 않도록 합니다.
+AAC의 뷰모델은 데이터를 쉽게 생명주기와 분리하여 관리할 수 있도록 돕습니다. AAC의 ViewModel을 상속받은 뷰모델은 ViewModelProviders로 Scope를 관리할 수 있습니다. 해당 Scope 내에서는 하나의 인스턴스만을 유지하여 작업이 중복되거나 데이터가 소실되지 않도록 합니다.
 
 ```
 // AAC의 ViewModel을 상속받는다.
@@ -47,10 +47,10 @@ class MainActivity extends LifecycleActivity {
 }
 ```
 
-> 위 예시코드에서는 this를 이용해 뷰모델의 Scope를 Activity로 지정하였습니다. Activity를 Scope로 하면 속한 Fragment 간에도 하나의 뷰모델을 공유하여 데이터를 전달할 수 있습니다.
+위 예시코드에서는 this를 이용해 뷰모델의 Scope를 Activity로 지정하였습니다. Activity를 Scope로 하면 속한 Fragment 간에도 하나의 뷰모델을 공유하여 데이터를 전달할 수 있습니다.
 
 ## 4. Room
-> ORM은 Cursor 단위로 통신하는 쿼리를 객체 단위로 통신할 수 있도록 돕습니다. [(ORM 참고링크)](https://d2.naver.com/helloworld/472196) Room은 이러한 ORM 라이브러리 중 하나로, Annotation 기반입니다. Room이 어떻게 SQLite를 더 사용하기 편하게 하는지 살펴보겠습니다.
+ORM은 Cursor 단위로 통신하는 쿼리를 객체 단위로 통신할 수 있도록 돕습니다. [(ORM 참고링크)](https://d2.naver.com/helloworld/472196) Room은 이러한 ORM 라이브러리 중 하나로, Annotation 기반입니다. Room이 어떻게 SQLite를 더 사용하기 편하게 하는지 살펴보겠습니다.
 
 ### 1. Annotation 기반의 정의와 자동 매칭
 ```
@@ -91,14 +91,14 @@ interface UserDao {
 ```
 
 ### 2. 컴파일 타임 쿼리 검증
-> Room은 또한 원래 런타임으로 테스트 해야만 제대로 동작하는지 알 수 있는 쿼리를 컴파일 타임에 검증하여, 정확한 쿼리를 빨리 짤 수 있도록 돕습니다.
+Room은 또한 원래 런타임으로 테스트 해야만 제대로 동작하는지 알 수 있는 쿼리를 컴파일 타임에 검증하여, 정확한 쿼리를 빨리 짤 수 있도록 돕습니다.
 
 # [Android Architecture Components 소개 (3) (완)](https://medium.com/@maryangmin/android-architecture-components-%EC%86%8C%EA%B0%9C-3-52980a9e22af)
 
 ## 5. Paging Libarary
-> 이 때 컨텐츠를 특정 기준으로 범위를 나누고, 스크롤을 따라 범위 단위로 로드되도록 하는 것을 Paging 이라고 합니다.
+이 때 컨텐츠를 특정 기준으로 범위를 나누고, 스크롤을 따라 범위 단위로 로드되도록 하는 것을 Paging 이라고 합니다.
 
-> Paging은 다음 3가지 작업이 필요합니다.
-> 1. 데이터를 Page 단위로 가져오는 쿼리
-> 2. 데이터를 특정 기준으로 Page 나누기
-> 3. 중복 아이템 검사
+Paging은 다음 3가지 작업이 필요합니다.
+1. 데이터를 Page 단위로 가져오는 쿼리
+2. 데이터를 특정 기준으로 Page 나누기
+3. 중복 아이템 검사
