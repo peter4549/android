@@ -1,5 +1,7 @@
 # [Understand How does Retrofit work](https://medium.com/mindorks/understand-how-does-retrofit-work-c9e264131f4a)
+<p align="center">
 <img alt="Image for post" class="vf wr t u v hr aj c" width="931" height="415" src="https://miro.medium.com/max/931/1*LSeA2e6nf6FezMDtHKmO7g.png" srcset="https://miro.medium.com/max/276/1*LSeA2e6nf6FezMDtHKmO7g.png 276w, https://miro.medium.com/max/552/1*LSeA2e6nf6FezMDtHKmO7g.png 552w, https://miro.medium.com/max/640/1*LSeA2e6nf6FezMDtHKmO7g.png 640w, https://miro.medium.com/max/700/1*LSeA2e6nf6FezMDtHKmO7g.png 700w" sizes="700px">
+</p>
 
 ### What
 **Retrofit** is a type-safe HTTP client for Android and Java.
@@ -68,7 +70,7 @@ The Second Step is like a chain of methods starting from eagerlyValidateMethods 
     }
   }
 ```
-In the above method **Platform.get()** has the following implementation to return the **platform type**. You can check full code in your IDE if you want to know more details
+In the above method **Platform.get()** has the following implementation to return the **platform type**.
 ```
 class Platform {
   private static final Platform PLATFORM = findPlatform();
@@ -209,3 +211,74 @@ class Platform {
 }
 ```
 After getting platform type it calls **service.getDeclaredMethods()** inside **eagerlyValidateMethods()** which returns an array containing Method objects reflecting all the declared methods of the class or interface represented by this object, including public, protected, default (package)access, and private methods, but excluding inherited methods.
+```
+public Method[] getDeclaredMethods() throws SecurityException {
+    Method[] result = getDeclaredMethodsUnchecked(false);
+    for (Method m : result) {
+        // Throw NoClassDefFoundError if types cannot be resolved.
+        m.getReturnType();
+        m.getParameterTypes();
+    }
+    return result;
+}
+```
+There is an iteration over the methods array obtained to identify the **request type, method name, Annotations** and **arguments** which will be stored in a **serviceMethodCache** map as shown below
+```
+private final Map<Method, ServiceMethod<?>> serviceMethodCache = new ConcurrentHashMap<>();
+ServiceMethod<?> loadServiceMethod(Method method) {
+  ServiceMethod<?> result = serviceMethodCache.get(method);
+  if (result != null) return result;
+
+  synchronized (serviceMethodCache) {
+    result = serviceMethodCache.get(method);
+    if (result == null) {
+      result = ServiceMethod.parseAnnotations(this, method);
+      serviceMethodCache.put(method, result);
+    }
+  }
+  return result;
+}
+```
+**ServiceMethod** is an abstract class that has the following details
+```
+package retrofit2;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import javax.annotation.Nullable;
+
+import static retrofit2.Utils.methodError;
+
+abstract class ServiceMethod<T> {
+  static <T> ServiceMethod<T> parseAnnotations(Retrofit retrofit, Method method) {
+    RequestFactory requestFactory = RequestFactory.parseAnnotations(retrofit, method);
+
+    Type returnType = method.getGenericReturnType();
+    if (Utils.hasUnresolvableType(returnType)) {
+      throw methodError(method,
+          "Method return type must not include a type variable or wildcard: %s", returnType);
+    }
+    if (returnType == void.class) {
+      throw methodError(method, "Service methods cannot return void.");
+    }
+
+    return HttpServiceMethod.parseAnnotations(retrofit, method, requestFactory);
+  }
+
+  abstract @Nullable T invoke(Object[] args);
+}
+```
+This in turn again calls the final class **RequestFactory** in which the **Builder** method has the following code.
+```
+Builder(Retrofit retrofit, Method method) {
+  this.retrofit = retrofit;
+  this.method = method;
+  this.methodAnnotations = method.getAnnotations();
+  this.parameterTypes = method.getGenericParameterTypes();
+  this.parameterAnnotationsArray = method.getParameterAnnotations();
+}
+```
+<p align="center">
+<img alt="Image for post" class="vf ws t u v hr aj c" width="2143" height="712" src="https://miro.medium.com/max/2143/1*4icKveo2LcB84EgBOpD3-g.png" srcset="https://miro.medium.com/max/276/1*4icKveo2LcB84EgBOpD3-g.png 276w, https://miro.medium.com/max/552/1*4icKveo2LcB84EgBOpD3-g.png 552w, https://miro.medium.com/max/640/1*4icKveo2LcB84EgBOpD3-g.png 640w, https://miro.medium.com/max/700/1*4icKveo2LcB84EgBOpD3-g.png 700w" sizes="700px">
+</p>  
+Finally, we reach **java.lang.reflect** package to fetch **annotations** from **AccessibleObject** class, **getGenericParameterTypes()** and **getParameterAnnotations()** from **Method** class.
