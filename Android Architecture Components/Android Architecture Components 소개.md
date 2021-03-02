@@ -49,4 +49,48 @@ class MainActivity extends LifecycleActivity {
 
 > 위 예시코드에서는 this를 이용해 뷰모델의 Scope를 Activity로 지정하였습니다. Activity를 Scope로 하면 속한 Fragment 간에도 하나의 뷰모델을 공유하여 데이터를 전달할 수 있습니다.
 
+## 4. Room
+> ORM은 Cursor 단위로 통신하는 쿼리를 객체 단위로 통신할 수 있도록 돕습니다. [(ORM 참고링크)](https://d2.naver.com/helloworld/472196) Room은 이러한 ORM 라이브러리 중 하나로, Annotation 기반입니다. Room이 어떻게 SQLite를 더 사용하기 편하게 하는지 살펴보겠습니다.
+
+### 1. Annotation 기반의 정의와 자동 매칭
+```
+// Database 정의. 테이블 및 버전을 함께 적는다.
+// RoomDatabase를 상속받는다.
+@Database(entities = {User.class}, version = 1)
+public abstract class MyDatabase extends RoomDatabase {
+    // Dao를 선언한다.
+    public abstract UserDao userDao();
+}
+
+// 정의한 Database 객체를 가져온다.
+public MyDatabase getMyDatabase() {
+    MyDatabase db = Room
+            .databaseBuilder(getApplicationContext(), MyDatabase.class)
+            .build();
+}
+
+// Entity Annotation으로 테이블 정의. 인스턴스 변수들이 곧 Column이다.
+@Entity
+public class User {
+    // PrimaryKey Annotation으로 키를 정의한다.
+    @PrimaryKey
+    private int uid;
+    private String firstName;
+    private String lastName;
+}
+
+// DAO 정의
+@Dao
+interface UserDao {
+    // Query Annotation으로 쿼리를 정의한다.
+    // 파라미터로 전달할 값을 : 기호 다음에 같은 이름으로 선언한다. 여기서는 :first, :last 이다.
+    // FROM 절로 넘긴 테이블과 매칭되는 모델로 반환값을 선언하면 알아서 맞는 객체로 매핑해준다. 여기서는 User이다.
+    @Query("SELECT * FROM user WHERE first_name :first AND last_name :last")
+    User findByName(String first, String last);
+}
+```
+
+### 2. 컴파일 타임 쿼리 검증
+> Room은 또한 원래 런타임으로 테스트 해야만 제대로 동작하는지 알 수 있는 쿼리를 컴파일 타임에 검증하여, 정확한 쿼리를 빨리 짤 수 있도록 돕습니다.
+
 # [Android Architecture Components 소개 (3) (완)](https://medium.com/@maryangmin/android-architecture-components-%EC%86%8C%EA%B0%9C-3-52980a9e22af)
