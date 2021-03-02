@@ -94,3 +94,11 @@ interface UserDao {
 > Room은 또한 원래 런타임으로 테스트 해야만 제대로 동작하는지 알 수 있는 쿼리를 컴파일 타임에 검증하여, 정확한 쿼리를 빨리 짤 수 있도록 돕습니다.
 
 # [Android Architecture Components 소개 (3) (완)](https://medium.com/@maryangmin/android-architecture-components-%EC%86%8C%EA%B0%9C-3-52980a9e22af)
+
+## 5. Paging Libarary
+> 이 때 컨텐츠를 특정 기준으로 범위를 나누고, 스크롤을 따라 범위 단위로 로드되도록 하는 것을 Paging 이라고 합니다.
+
+> Paging은 다음 3가지 작업이 필요합니다.
+1. 데이터를 Page 단위로 가져오는 쿼리
+2. 데이터를 특정 기준으로 Page 나누기
+3. 중복 아이템 검사
