@@ -45,8 +45,8 @@ class MainActivity extends LifecycleActivity {
                 });
     }
 }
-```  
-  
+```
+
 > 위 예시코드에서는 this를 이용해 뷰모델의 Scope를 Activity로 지정하였습니다. Activity를 Scope로 하면 속한 Fragment 간에도 하나의 뷰모델을 공유하여 데이터를 전달할 수 있습니다.
 
 # [Android Architecture Components 소개 (3) (완)](https://medium.com/@maryangmin/android-architecture-components-%EC%86%8C%EA%B0%9C-3-52980a9e22af)
