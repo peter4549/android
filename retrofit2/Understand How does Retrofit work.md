@@ -12,3 +12,48 @@ To work with Retrofit we basically need the following three classes:
 * A model class which is used as a **JSON** model
 * An interface that defines the **HTTP** operations needs to be performed
 * Retrofit.Builder class: Instance which uses the interface defined above and the Builder API to allow defining the **URL endpoint** for the **HTTP** operations. It also takes the **converters** we provide to format the **Response**.
+
+## Behind the scenes
+```
+val shareService = retrofit.create(ApiService.class);
+```
+Click on the create method which will navigate you to **Retrofit.java** class to the **create method** which looks like below
+```
+ public <T> T create(final Class<T> service) {
+    Utils.validateServiceInterface(service);
+    if (validateEagerly) {
+      eagerlyValidateMethods(service);
+    }
+    return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
+        new InvocationHandler() {
+          private final Platform platform = Platform.get();
+          private final Object[] emptyArgs = new Object[0];
+
+          @Override public @Nullable Object invoke(Object proxy, Method method,
+              @Nullable Object[] args) throws Throwable {
+            // If the method is a method from Object then defer to normal invocation.
+            if (method.getDeclaringClass() == Object.class) {
+              return method.invoke(this, args);
+            }
+            if (platform.isDefaultMethod(method)) {
+              return platform.invokeDefaultMethod(method, service, proxy, args);
+            }
+            return loadServiceMethod(method).invoke(args != null ? args : emptyArgs);
+          }
+        });
+  }
+```
+The first check it does is whether the interface provided is a **valid** interface or not by calling the method **validateServiceInterface** If it was not an interface it throws **IllegalArgumentException**
+```
+  static <T> void validateServiceInterface(Class<T> service) {
+    if (!service.isInterface()) {
+      throw new IllegalArgumentException("API declarations must be interfaces.");
+    }
+    // Prevent API interfaces from extending other interfaces. This not only avoids a bug in
+    // Android (http://b.android.com/58753) but it forces composition of API declarations which is
+    // the recommended pattern.
+    if (service.getInterfaces().length > 0) {
+      throw new IllegalArgumentException("API interfaces must not extend other interfaces.");
+    }
+  }
+```
