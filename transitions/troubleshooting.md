@@ -3,9 +3,9 @@
 Glide.with(context)
         .load(photoUriString)
         .centerCrop()
-        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        // .diskCacheStrategy(DiskCacheStrategy.NONE)
         .error(R.drawable.ic_round_error_24)
-        .skipMemoryCache(true)
+        // .skipMemoryCache(true)
         // .transition(DrawableTransitionOptions.withCrossFade())
         .into(view.image_view)
 ```
